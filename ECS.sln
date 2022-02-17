@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECS.Legacy", "ECS.Legacy\ECS.Legacy.csproj", "{04BB7A61-C926-4654-A911-EA7EAE974326}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECS.TestForUsabillity", "ECS.TestForUsabillity\ECS.TestForUsabillity.csproj", "{A50D97F6-A3A7-471B-B57E-00E596E670C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECS.TestForUsabillity", "ECS.TestForUsabillity\ECS.TestForUsabillity.csproj", "{A50D97F6-A3A7-471B-B57E-00E596E670C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECS.Unit.Test", "ECS.Unit.Test\ECS.Unit.Test.csproj", "{F7DA81E0-BE6E-4B60-9057-C600DEBDF391}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A50D97F6-A3A7-471B-B57E-00E596E670C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A50D97F6-A3A7-471B-B57E-00E596E670C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A50D97F6-A3A7-471B-B57E-00E596E670C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7DA81E0-BE6E-4B60-9057-C600DEBDF391}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7DA81E0-BE6E-4B60-9057-C600DEBDF391}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7DA81E0-BE6E-4B60-9057-C600DEBDF391}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7DA81E0-BE6E-4B60-9057-C600DEBDF391}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

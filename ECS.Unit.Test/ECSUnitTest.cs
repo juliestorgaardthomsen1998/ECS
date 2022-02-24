@@ -74,6 +74,12 @@ namespace ECS.Unit.Test
         [TestCase(45)]
         public void TestGetCurTemp(int temp)
         {
+            tempSensor.GetTemp().Returns(temp);
+
+            uut.GetCurTemp();
+
+            tempSensor.Received(1).GetTemp();
+
             //// Arrange
             //fakeTempSensor.Gen = temp;
 

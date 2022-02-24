@@ -5,13 +5,16 @@ namespace ECS.TestForUsabillity
 {
     public class ECS
     {
-        private int _threshold;
+        //private int _threshold;
         private readonly ITempSensor _tempSensor;
         private readonly IHeater _heater;
 
+        public int Threshold { get; set; }
+
         public ECS(int thr, ITempSensor tempSensor, IHeater heater)
         {
-            SetThreshold(thr);
+            //SetThreshold(thr);
+            Threshold = thr;
             _tempSensor = tempSensor;
             _heater = heater;
         }
@@ -20,21 +23,20 @@ namespace ECS.TestForUsabillity
         {
             var t = _tempSensor.GetTemp();
             Console.WriteLine($"Temperature measured was {t}");
-            if (t < _threshold)
+            if (t < Threshold)
                 _heater.TurnOn();
             else
                 _heater.TurnOff();
-
         }
 
         public void SetThreshold(int thr)
         {
-            _threshold = thr;
+            Threshold = thr;
         }
 
         public int GetThreshold()
         {
-            return _threshold;
+            return Threshold;
         }
 
         public int GetCurTemp()

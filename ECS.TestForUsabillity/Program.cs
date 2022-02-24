@@ -8,8 +8,12 @@ namespace ECS.TestForUsabillity
         {
             Console.WriteLine("Testing ECS.");
 
+            Console.Write("Set threshold: ");
+
+            int thr = Convert.ToInt32(Console.ReadLine());
+
             // Make an ECS with a threshold of 23
-            var control = new ECS(23, new TempSensor(), new Heater());
+            var control = new ECS(thr, new TempSensor(), new Heater());
 
             for (int i = 1; i <= 15; i++)
             {

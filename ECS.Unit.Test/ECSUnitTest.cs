@@ -1,20 +1,25 @@
 using NUnit.Framework;
 using ECS.TestForUsabillity;
+using NSubstitute;
 
 namespace ECS.Unit.Test
 {
     public class ECSUnitTest
     {
         private TestForUsabillity.ECS uut;
-        private FakeTempSensor fakeTempSensor;
-        private FakeHeater fakeHeater;
+        //private FakeTempSensor fakeTempSensor;
+        //private FakeHeater fakeHeater;
+        private IHeater heater;
+        private ITempSensor tempSensor;
 
         [SetUp]
         public void Setup()
         {
-            fakeTempSensor = new FakeTempSensor();
-            fakeHeater = new FakeHeater();
-            uut = new TestForUsabillity.ECS(23,fakeTempSensor,fakeHeater);
+            heater = Substitute.For<IHeater>();
+            tempSensor = Substitute.For<ITempSensor>();
+            //fakeTempSensor = new FakeTempSensor();
+            //fakeHeater = new FakeHeater();
+            uut = new TestForUsabillity.ECS(23,tempSensor,heater);
         }
 
         [TestCase(3)]
@@ -24,14 +29,17 @@ namespace ECS.Unit.Test
         [TestCase(22)]
         public void TestHeaterIsOn(int temp)
         {
-            //Arrange
-            fakeTempSensor.Gen = temp;
-
-            //Act
+            tempSensor.GetTemp().Returns(temp);
             uut.Regulate();
+            heater.Received(1).TurnOn();
+            ////Arrange
+            //fakeTempSensor.Gen = temp;
 
-            //Assert
-            Assert.That(fakeHeater.Status, Is.EqualTo(true));
+            ////Act
+            //uut.Regulate();
+
+            ////Assert
+            //Assert.That(fakeHeater.Status, Is.EqualTo(true));
         }
 
         [TestCase(23)]
@@ -39,14 +47,16 @@ namespace ECS.Unit.Test
         [TestCase(45)]
         public void TestHeaterIsOff(int temp)
         {
-            //Arrange
-            fakeTempSensor.Gen = temp;
+            ////Arrange
+            //fakeTempSensor.Gen = temp;
+            ////Act
+            //uut.Regulate();
+            ////Assert
+            //Assert.That(fakeHeater.Status, Is.EqualTo(false));
 
-            //Act
+            tempSensor.GetTemp().Returns(temp);
             uut.Regulate();
-
-            //Assert
-            Assert.That(fakeHeater.Status, Is.EqualTo(false));
+            heater.Received(1).TurnOff();
         }
 
         [TestCase(3)]
@@ -67,25 +77,28 @@ namespace ECS.Unit.Test
         [TestCase(45)]
         public void TestGetCurTemp(int temp)
         {
-            // Arrange
-            fakeTempSensor.Gen = temp;
+            //// Arrange
+            //fakeTempSensor.Gen = temp;
 
-            //Act
-            int testTemp = uut.GetCurTemp();
+            ////Act
+            //int testTemp = uut.GetCurTemp();
 
-            //Assert
-            Assert.That(temp, Is.EqualTo(testTemp));
+            ////Assert
+            //Assert.That(temp, Is.EqualTo(testTemp));
 
         }
 
         [Test]
         public void TestRunSelfTest()
         {
-            //Act
-            bool test = uut.RunSelfTest();
+            tempSensor.RunSelfTest().Returns(false);
+            heater.RunSelfTest().Returns(true);
+            Assert.IsFalse(uut.RunSelfTest());
+            ////Act
+            //bool test = uut.RunSelfTest();
 
-            //Assert
-            Assert.That(test, Is.EqualTo(true));
+            ////Assert
+            //Assert.That(test, Is.EqualTo(true));
         }
 
         //SLut prut finale

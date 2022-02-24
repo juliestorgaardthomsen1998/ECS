@@ -7,19 +7,21 @@ namespace ECS.Unit.Test
     public class ECSUnitTest
     {
         private TestForUsabillity.ECS uut;
-        //private FakeTempSensor fakeTempSensor;
-        //private FakeHeater fakeHeater;
         private IHeater heater;
         private ITempSensor tempSensor;
+
+        //private FakeTempSensor fakeTempSensor;
+        //private FakeHeater fakeHeater;
 
         [SetUp]
         public void Setup()
         {
             heater = Substitute.For<IHeater>();
             tempSensor = Substitute.For<ITempSensor>();
+            uut = new TestForUsabillity.ECS(23,tempSensor,heater);
+
             //fakeTempSensor = new FakeTempSensor();
             //fakeHeater = new FakeHeater();
-            uut = new TestForUsabillity.ECS(23,tempSensor,heater);
         }
 
         [TestCase(3)]
@@ -32,13 +34,10 @@ namespace ECS.Unit.Test
             tempSensor.GetTemp().Returns(temp);
             uut.Regulate();
             heater.Received(1).TurnOn();
-            ////Arrange
+
+            //Første test
             //fakeTempSensor.Gen = temp;
-
-            ////Act
             //uut.Regulate();
-
-            ////Assert
             //Assert.That(fakeHeater.Status, Is.EqualTo(true));
         }
 
@@ -47,11 +46,9 @@ namespace ECS.Unit.Test
         [TestCase(45)]
         public void TestHeaterIsOff(int temp)
         {
-            ////Arrange
+            //Første test
             //fakeTempSensor.Gen = temp;
-            ////Act
             //uut.Regulate();
-            ////Assert
             //Assert.That(fakeHeater.Status, Is.EqualTo(false));
 
             tempSensor.GetTemp().Returns(temp);
@@ -94,13 +91,11 @@ namespace ECS.Unit.Test
             tempSensor.RunSelfTest().Returns(false);
             heater.RunSelfTest().Returns(true);
             Assert.IsFalse(uut.RunSelfTest());
-            ////Act
-            //bool test = uut.RunSelfTest();
 
-            ////Assert
+            //Første test
+            //bool test = uut.RunSelfTest();
             //Assert.That(test, Is.EqualTo(true));
         }
 
-        //SLut prut finale
     }
 }

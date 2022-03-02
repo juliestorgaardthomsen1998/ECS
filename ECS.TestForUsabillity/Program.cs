@@ -19,7 +19,7 @@ namespace ECS.TestForUsabillity
             {
                 Console.WriteLine($"Running regulation number {i}");
 
-                control.Regulate();
+                control.Regulate(); 
             }
         }
     }
